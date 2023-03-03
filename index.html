@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <title>Loan Defaulting Prediction Model</title>
+
+</head>
+
+<body>
+
+  <h1> Loan Default Prediction Model</h1>
+  <h4> This is a Loan Default Prediction Machine Learning Model. Please enter the parameters below
+    to view predcition.
+  </h4>
+
+  <div class="container">
+
+    <img src="https://miro.medium.com/v2/resize:fit:786/format:webp/1*UC0sy0bENl-DLPy3jmXNag.jpeg" style="float: right"
+      height="700" width="700">
+    <form id="my-form">
+
+      <div>
+        <label for="acct">Account Number</label>
+        <input type="text" id="acct" name="Account Number" placeholder="Enter Account Number" pattern="[a-zA-Z0-9]+"
+          required>
+      </div>
+
+      <div>
+        <label for="moody">Moody</label>
+        <input type="number" step="0.01" id="moody" name="Moody" placeholder="Enter Number">
+      </div>
+
+      <div>
+        <label for="vv">Vehicle Value</label>
+        <input type="number" step="0.01" id="vv" name="Vehicle Value" placeholder="Enter Vehicle Value">
+      </div>
+
+      <div>
+        <label for="famt">Financed Amount</label>
+        <input type="number" step="0.01" id="famt" name="Financed Amount " placeholder="Enter Financed Amount">
+      </div>
+
+      <div>
+        <label for="pamt">Payment Amount</label>
+        <input type="number" step="0.01" id="pamt" name="Payment Amount" placeholder="Enter Payment Amount">
+      </div>
+
+      <div>
+        <label for="damt">Down Payment</label>
+        <input type="number" step="0.01" id="damt" name="Down Payment" placeholder="Enter Down Payment">
+      </div>
+
+      <div>
+        <label for="cha">Charge</label>
+        <input type="number" id="cha" name="Charge" placeholder="Enter Charge">
+      </div>
+
+      <div>
+        <label for="fscore">FICO Score</label>
+        <input type="number" step="0.01" id="fscore" name="FICO Score" placeholder="Enter FICO Score">
+      </div>
+      <input type="submit" value="Submit">
+
+    </form>
+  </div>
+
+
+  <script>
+
+    const form = document.getElementById('my-form');
+
+    form.addEventListener('submit', event => {
+
+      event.preventDefault();
+
+      const formData = {
+
+        "data": [
+          [
+            parseFloat(form.elements.moody.value),
+            parseFloat(form.elements.vv.value),
+            parseFloat(form.elements.famt.value),
+            parseFloat(form.elements.pamt.value),
+            parseFloat(form.elements.damt.value),
+            parseFloat(form.elements.cha.value),
+            parseFloat(form.elements.fscore.value)
+          ]
+        ]
+      };
+
+      console.log("Form data ", formData);
+      fetch('', {
+
+        method: 'POST',
+        headers: {
+
+          'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify(formData)
+
+      })
+        .then(response => response.json())
+        .then(data => {
+
+          console.log("OUTPUT: ", data);
+          const jsonResponseH3 = document.getElementById('json-response');
+          jsonResponseH3.textContent = JSON.stringify(data);
+        })
+        .catch(error => console.error(error));
+    });
+  </script>
+
+
+  <h2> Prediction is</h2>
+  <h3 id="json-response"> </h3>
+</body>
+
+</html>
