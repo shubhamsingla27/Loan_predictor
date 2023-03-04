@@ -93,7 +93,7 @@
       };
 
       console.log("Form data ", formData);
-      fetch('', {
+      fetch('https://sfmd4hbbpb.execute-api.us-east-1.amazonaws.com/dev', {
 
         method: 'POST',
         headers: {
@@ -101,7 +101,7 @@
           'Content-Type': 'application/json'
         },
 
-        body: JSON.stringify(formData)
+        body: formData
 
       })
         .then(response => response.json())
