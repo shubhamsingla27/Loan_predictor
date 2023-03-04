@@ -113,15 +113,14 @@
 
           console.log("OUTPUT: ", data);
           const jsonResponseH3 = document.getElementById('json-response');
-          jsonResponseH3.textContent = JSON.stringify(data);
+          jsonResponseH3.textContent = parseFloat(data.replace(/\n/g, ''))*100 +" %";
         })
         .catch(error => console.error(error));
     });
   </script>
 
 
-  <h2> Prediction is</h2>
-  <h3 id="json-response"> </h3>
+  <h2> Loan default rate: <span id="json-response"> </span></h2>
 </body>
 
 </html>
